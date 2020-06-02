@@ -174,7 +174,8 @@ class @WOW
   # show box element
   show: (box) ->
     @applyStyle(box)
-    box.className = "#{box.className} #{@config.animateClass}"
+    # box.className = "#{box.className} #{@config.animateClass}"
+    box.setAttribute("class", "#{box.getAttribute("class")} #{@config.animateClass}")
     @config.callback(box) if @config.callback?
     @util().emitEvent(box, @wowEvent)
 
@@ -207,7 +208,8 @@ class @WOW
   resetAnimation: (event) =>
     if event.type.toLowerCase().indexOf('animationend') >= 0
       target = event.target || event.srcElement
-      target.className = target.className.replace(@config.animateClass, '').trim()
+      # target.className = target.className.replace(@config.animateClass, '').trim()
+      target.setAttribute("class", target.getAttribute("class").replace(@config.animateClass).trim())
 
   customStyle: (box, hidden, duration, delay, iteration) ->
     @cacheAnimationName(box) if hidden
